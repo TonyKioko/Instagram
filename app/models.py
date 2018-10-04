@@ -28,7 +28,7 @@ class Image(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
-    # profile = models.ForeignKey(Profile,on_delete=models.CASCADE
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.caption
