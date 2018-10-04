@@ -17,6 +17,7 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
+
     @classmethod
     def get_profile(cls):
         profile = Profile.objects.all()
@@ -44,5 +45,22 @@ class Image(models.Model):
         updated_caption = Image.objects.filter(id=id).update(caption = caption)
         return updated_caption
 
+    class Meta:
+        ordering = ['-timestamp']
+
+class Comment(models.Model):
+    comment = models.CharField(max_length=80)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    # user = models.ForeignKey(User)
+    image = models.ForeignKey(Image,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.comment
+
+    def save_comment(self):
+        return self.save()
+
+    def delete_comment(self):
+        self.delete()
     class Meta:
         ordering = ['-timestamp']
