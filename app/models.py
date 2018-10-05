@@ -1,5 +1,7 @@
 from django.db import models
 import datetime as dt
+from django.contrib.auth.models import User
+
 
 
 # Create your models here.
@@ -8,6 +10,8 @@ class Profile(models.Model):
     profilePhoto = models.ImageField(upload_to='profpics/',default='NO IMAGE')
     bio = models.CharField(max_length=60,blank=True)
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True)
+
     def __str__(self):
         return self.bio
 
@@ -29,6 +33,8 @@ class Image(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     likes = models.PositiveIntegerField(default=0)
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True)
+
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
 
     def __str__(self):
@@ -52,6 +58,8 @@ class Comment(models.Model):
     comment = models.CharField(max_length=80)
     timestamp = models.DateTimeField(auto_now_add=True)
     # user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ForeignKey(Image,on_delete=models.CASCADE)
 
     def __str__(self):
