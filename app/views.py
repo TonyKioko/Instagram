@@ -26,3 +26,17 @@ def new_profile(request):
     else:
         form = ProfileForm()
     return render(request,'profile.html',{"form":form})
+
+@login_required(login_url='/accounts/login')
+def new_image(request):
+	current_user = request.user
+	if request.method == 'POST':
+		form = ImageForm(request.POST,request.FILES)
+		if form.is_valid():
+			new_image = form.save(commit=False)
+			new_image.user = current_user
+			new_image.save()
+			return redirect('index')
+	else:
+			form = ImageForm()
+	return render(request, 'new_image.html',{"form":form })

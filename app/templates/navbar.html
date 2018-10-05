@@ -12,7 +12,8 @@
       <input class="input-search" type="search" name="username" placeholder="Search Username"/>
     </form>
     <section class="icons-section" >
-      <a href=""><i style="color:black;" class="fa fa-align-justify fa-2x"></i></a>
+      <a href="{% url "add_photo" %}"><i style="color:black;" class="fa fa-pencil-alt fa-2x"></i></a>
+
       <a href=""><i style="color:black;" class="fa fa-pencil-alt fa-2x"></i></a>
       <a href="{% url "profile" %}"><i style="color:black;" class="fa fa-user fa-2x">EDIT</i></a>
       <a href="/logout"><i style="color:black;" class="fa fa-sign-out-alt fa-2x">LOGOUT</i></a>
