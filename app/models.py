@@ -35,7 +35,7 @@ class Image(models.Model):
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True)
 
-    profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.caption

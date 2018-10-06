@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -40,3 +40,20 @@ def new_image(request):
 	else:
 			form = ImageForm()
 	return render(request, 'new_image.html',{"form":form })
+
+
+@login_required(login_url='/accounts/login/')
+def new_comment(request,image_id):
+    image = get_object_or_404(Image, pk=image_id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.image = image
+            comment.user = current_user
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+    return render(request, 'comment.html', {"user":current_user,"form":form})
