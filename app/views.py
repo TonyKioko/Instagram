@@ -76,5 +76,5 @@ def image_details(request,id):
     image = Image.objects.get(id = id)
     comments = Comment.objects.order_by('-timestamp')
 
-    context={"image":image,}
+    context={"image":image,"comments":comments}
     return render(request, 'image_details.html',context)
