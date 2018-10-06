@@ -10,7 +10,7 @@ from . import views
 urlpatterns=[
     url(r'^$',views.index,name='index'),
     url(r'^profile/',views.new_profile, name='profile'),
-    url(r'^new/image$',views.new_image,name='add_photo'),
+    url(r'^upload/$',views.new_image,name='add_photo'),
 
 
 
