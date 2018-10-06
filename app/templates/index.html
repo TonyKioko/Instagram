@@ -13,8 +13,29 @@
       <p>{{image.user}}</p>
       <a href="{% url 'comment' image_id=image.id %}" style="color:inherit;"><i class="far fa-comment fa-2x ml-4"></i></a>
 
+      <div class="">                           {% if comments %}
+                                              {% for comment in comments %}
+                                              {% if comment.image_id == image.id %}
+
+                                              <div >
+                                                  <p> <strong> {{comment.user.username}} </strong>
+                                                  {{comment.comment}}</p>
+                                              </div>
+                                              {% else %}
+
+                                              {% endif %}
+                                              {% empty%}
+                                              <p>No comments yet</p>
+                                              {% endfor %}
+
+                                              {% endif %}
+
+
+
+                                          </div>
+
     {% endfor %}
-    {% for comment in comments %}
+    <!-- {% for comment in comments %} -->
             <!-- {% if comment.image_id == image.id %} -->
 
             <!-- <div class="list-inline"> -->
@@ -23,7 +44,7 @@
             <!-- </div> -->
             <!-- {% else %} -->
             <!-- {% endif %} -->
-    {% endfor %}
+    <!-- {% endfor %} -->
   </div>
   <div class="col-md-3"></div>
 
