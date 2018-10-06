@@ -13,7 +13,9 @@ from app.forms import *
 def index(request):
     images = Image.objects.order_by('-timestamp')
     comments = Comment.objects.order_by('-timestamp')
-    context ={"images":images,"comments":comments}
+    profiles = Profile.objects.all()
+
+    context ={"images":images,"comments":comments,"profiles":profiles}
 
     return render(request,'index.html',context)
 
@@ -68,3 +70,9 @@ def like_photo(request,id):
     image.likes = image.likes + 1
     image.save()
     return redirect('index')
+
+@login_required(login_url='/accounts/login')
+def image_details(request,id):
+    image = Image.objects.get(id = id)
+    context={"image":image}
+    return render(request, 'image_details.html',context)
