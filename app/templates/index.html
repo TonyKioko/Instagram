@@ -11,11 +11,26 @@
     {% for image in images %}
       <img src="{{image.image.url}}" alt="">
       <p>{{image.user}}</p>
+      <a href="{% url 'comment' image_id=image.id %}" style="color:inherit;"><i class="far fa-comment fa-2x ml-4"></i></a>
+
+    {% endfor %}
+    {% for comment in comments %}
+            <!-- {% if comment.image_id == image.id %} -->
+
+            <!-- <div class="list-inline"> -->
+                <p>
+                {{comment.comment}}</p>
+            <!-- </div> -->
+            <!-- {% else %} -->
+            <!-- {% endif %} -->
     {% endfor %}
   </div>
   <div class="col-md-3"></div>
 
 
-</div>
+</div
+<br>
+<br>
+<br>
 
 {% endblock %}
