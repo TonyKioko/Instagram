@@ -43,7 +43,7 @@ def new_image(request):
 
 
 @login_required(login_url='/accounts/login/')
-def new_comment(request,image_id):
+def comment(request,image_id):
     image = get_object_or_404(Image, pk=image_id)
     current_user = request.user
     if request.method == 'POST':

@@ -11,6 +11,8 @@ urlpatterns=[
     url(r'^$',views.index,name='index'),
     url(r'^profile/',views.new_profile, name='profile'),
     url(r'^upload/$',views.new_image,name='add_photo'),
+    url(r'^comment/(?P<image_id>\d+)', views.comment, name='comment'),
+
 
 
 
