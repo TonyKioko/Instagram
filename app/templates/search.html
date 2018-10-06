@@ -4,10 +4,10 @@
 
   <div class="row">
     {% if images %}
-      <h2 class="text-center" style="color:white">Found {{ images|length }} Images of search term : <em>{{message}}</em> </h2>
+      <h2 class="text-center" style="color:black">Found {{ images|length }} Images of search term : <em>{{message}}</em> </h2>
       <hr>
     {% else %}
-      <h2 style="color:white"> Found 0 images for the search term {{message}}</h2>
+      <h2 style="color:black"> Found 0 images for the search term {{message}}</h2>
       <hr>
     {% endif %}
 
@@ -16,6 +16,7 @@
   <div class="container">
 
   <!-- {% if images %} -->
+<hr>
     {% for image in images %}
     <a href="#">
       <div class="col-md-4 img-cont">
@@ -26,7 +27,6 @@
       </div>
     </a>
 
-    <h2 class="text-center" style="color:white">Found {{ images|length }} Images of search term : <em>{{message}}</em> </h2>
 
 
     {% endfor %}
