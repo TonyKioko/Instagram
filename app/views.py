@@ -11,7 +11,11 @@ from app.forms import *
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
-    return render(request,'index.html',{})
+    images = Image.objects.order_by('-timestamp')
+    comments = Comment.objects.order_by('-timestamp')
+    context ={"images":images,"comments":comments}
+
+    return render(request,'index.html',context)
 
 @login_required(login_url='/accounts/login/')
 def new_profile(request):

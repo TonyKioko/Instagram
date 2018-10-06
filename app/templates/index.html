@@ -1,11 +1,21 @@
 {%extends 'base.html'%}
-{% load static%}
+{% load static %}
 {% load bootstrap4 %}
 
 
 {% block content %}
 {{block.super}}
+<div class="container">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    {% for image in images %}
+      <img src="{{image.image.url}}" alt="">
+      <p>{{image.user}}</p>
+    {% endfor %}
+  </div>
+  <div class="col-md-3"></div>
 
-<h1>This is the home page</h1>
+
+</div>
 
 {% endblock %}
