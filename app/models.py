@@ -50,6 +50,10 @@ class Image(models.Model):
     def update_caption(cls,id,caption):
         updated_caption = Image.objects.filter(id=id).update(caption = caption)
         return updated_caption
+    @classmethod
+    def search_by_caption(cls,search_term):
+    	images = cls.objects.filter(caption__icontains=search_term)
+    	return images
 
     class Meta:
         ordering = ['-timestamp']

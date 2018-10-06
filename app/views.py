@@ -78,3 +78,21 @@ def image_details(request,id):
 
     context={"image":image,"comments":comments}
     return render(request, 'image_details.html',context)
+
+
+def search_results(request):
+
+    if 'caption' in request.GET and request.GET["caption"]:
+        search_term = request.GET.get("caption")
+        found_images = Image.search_by_caption(search_term)
+        message = f"{search_term}"
+        print(search_term)
+
+        context = {"images":found_images,"message":message}
+
+        return render(request, 'search.html',context)
+
+    else:
+        message = "You haven't searched for any term"
+        # context={"message":message}
+        return render(request, 'search.html',{"message":message})
