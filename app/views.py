@@ -74,5 +74,7 @@ def like_photo(request,id):
 @login_required(login_url='/accounts/login')
 def image_details(request,id):
     image = Image.objects.get(id = id)
-    context={"image":image}
+    comments = Comment.objects.order_by('-timestamp')
+
+    context={"image":image,}
     return render(request, 'image_details.html',context)

@@ -10,12 +10,7 @@
   <div class="col-md-6">
     {% for image in images %}
 
-    {% for profile in profiles %}
 
-      <!-- <img src="{{image.profile.profileP}}"> -->
-      <div><img src='{{image.profile.profilePhoto.url}}' style='width:40px;height:40px;border-radius: 50%;float:left;margin:10px;'><div style='float:left;margin:10px;margin-top:20px;'><strong>{{image.user.username}}</strong></div></div>
-
-      <!-- <a href="">{{image.profile.bio}}</a> -->
 
       <a href="">{{image.user.username}}</a>
 
@@ -58,17 +53,7 @@
                                           </div>
                                           {% endfor %}
 
-    {% endfor %}
-    <!-- {% for comment in comments %} -->
-            <!-- {% if comment.image_id == image.id %} -->
-
-            <!-- <div class="list-inline"> -->
-                <p>
-                {{comment.comment}}</p>
-            <!-- </div> -->
-            <!-- {% else %} -->
-            <!-- {% endif %} -->
-    <!-- {% endfor %} -->
+    
   </div>
   <div class="col-md-3"></div>
 
