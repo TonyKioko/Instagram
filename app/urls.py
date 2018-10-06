@@ -12,6 +12,8 @@ urlpatterns=[
     url(r'^profile/',views.new_profile, name='profile'),
     url(r'^upload/$',views.new_image,name='add_photo'),
     url(r'^comment/(?P<image_id>\d+)', views.comment, name='comment'),
+    url(r'^photo/like/(?P<id>\d+)', views.like_photo, name='likephoto'),
+
 
 
 

@@ -61,3 +61,10 @@ def comment(request,image_id):
     else:
         form = CommentForm()
     return render(request, 'comment.html', {"user":current_user,"form":form})
+
+@login_required (login_url='/accounts/register/')
+def like_photo(request,id):
+    image = Image.objects.get(id=id)
+    image.likes = image.likes + 1
+    image.save()
+    return redirect('index')

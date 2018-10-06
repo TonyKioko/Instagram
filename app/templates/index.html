@@ -12,7 +12,17 @@
       <img src="{{image.image.url}}" alt="">
       <p>{{image.user}}</p>
       <a href="{% url 'comment' image_id=image.id %}" style="color:inherit;"><i class="far fa-comment fa-2x ml-4"></i></a>
+      <a id="like" href="{% url 'likephoto' id=image.id%}" style="color:inherit;">
+                                                                             <i class="far fa-heart fa-2x ml-4"></i>
+                                                                     </a>
+                                                                    <div>
 
+                                                                      {% if image.likes %}
+                                                <div class="row">
+                                                        <h5 style=""><b>{{image.likes}} Likes</b></h5>
+                                                </div>
+                                                {% endif %}
+                                                                    </div>
       <div class="">                           {% if comments %}
                                               {% for comment in comments %}
                                               {% if comment.image_id == image.id %}
