@@ -41,7 +41,7 @@ def signup(request):
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
-    
+
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
@@ -62,7 +62,7 @@ def activate(request, uidb64, token):
 def index(request):
     images = Image.objects.order_by('-timestamp')
     comments = Comment.objects.order_by('-timestamp')
-    profiles = Profile.objects.all()
+    profiles = Profile.objects.order_by('-timestamp')
 
     context ={"images":images,"comments":comments,"profiles":profiles}
 

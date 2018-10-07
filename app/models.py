@@ -12,7 +12,8 @@ class Profile(models.Model):
     bio = models.CharField(max_length=60,blank=True)
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True)
-
+    timestamp = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.bio
 

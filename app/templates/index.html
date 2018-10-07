@@ -1,14 +1,14 @@
 {%extends 'base.html'%} {% load static %} {% load bootstrap4 %}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> {% block content %} {{block.super}}
 <div class="container" style="margin-top:120px;">
-  <div class="col-md-3"></div>
+  <div class="row">
   <div class="col-md-6">
     {% for image in images %}
 
-    <div class="card style="margin-bottom:100px;"">
+    <div class="card style=" margin-bottom:100px; "">
       <div class="card-header">
         <img src="{{image.image.url}}" alt="" style="height:50px;width:50px; border-radius:50%">
-                <p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user}}</p>
+        <p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user}}</p>
       </div>
       <a href="{% url 'imagedetails' id=image.id %}">
 
@@ -20,9 +20,9 @@
       <div id="likes">
 
         <!-- <p>{{image.user}}</p> -->
-        <a href="{% url 'comment' image_id=image.id %}" style="color:inherit;"><i class="far fa-comment fa-2x ml-4"></i></a>
+        <a href="{% url 'comment' image_id=image.id %}" style="color:black;font-size:12px;font-weight:lighter;;"><i class="far fa-comment fa-2x ml-4"></i></a>
 
-        <a id="like" href="{% url 'likephoto' id=image.id%}" style="color:inherit;"><i class="far fa-heart fa-2x ml-4"></i>
+        <a id="like" href="{% url 'likephoto' id=image.id%}" style="color:black;font-size:12px;"><i class="far fa-heart fa-2x ml-3"></i>
           </a> {% if image.likes %}
         <div class="row">
           <p class="ml-5"><b>{{image.likes}} Likes</b></hp>
@@ -36,12 +36,12 @@
         {% else %} {% endif %} {% empty%}
         <p>No comments yet</p>
         {% endfor %} {% endif %}
-        <h6 class="ml-4">{{ image.timestamp | timesince | upper }} AGO</h6>
+        <h6 class="ml-4" style="font-size:12px;">{{ image.timestamp | timesince | upper }} AGO</h6>
 
-        <hr>
+
         <div class="card-footer">
-                                                <p class="text-center"><a href="{% url 'comment' image_id=image.id %}"  style="color:grey; text-decoration:none;">Add comment</a></p>
-                                        </div>
+          <p class="text-center"><a href="{% url 'comment' image_id=image.id %}" style="color:black; text-decoration:none;">Add comment</a></p>
+        </div>
 
 
       </div>
@@ -63,11 +63,40 @@
 
 
   </div>
-  <div class="col-md-3"></div>
+  <div class="col-md-1">
+
+  </div>
+  <div class="col-md-3">
+    <p class="text-center">Stories</p>
+
+    <div style="overflow-y:auto;">
+      {% for profile in profiles %}
+      <div>
+        <div class="row">
+
+<div class="col-md-12">
+
+</div>
+        <div class="col-md-3">
+          <img src="{{profile.profilePhoto.url}}" id="profiles" style="border-radius:50%;height:50px;width:50px;">
+
+        </div>
+        <div class="col-md-8">
+          <a href=""> <p style="font-weight:bold;font-size:12px">{{profile.user}}<br></a>
+          <span style="font-size:12px;font-weight:normal; color:grey">{{profile.timestamp|timesince|upper}} AGO</span></p>
+
+        </div>
+
+      </div>
+      <br>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   <br>
   <br><br>
 
-
-</div <br>
+</div>
+</div>
 <br>
 <br> {% endblock %}

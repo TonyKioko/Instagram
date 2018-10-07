@@ -1,8 +1,15 @@
+
+
+#profiles{
+  border: 4px double #F3176E;;
+}
 *{
   font-family: 'Roboto', sans-serif;
+}
+body{
+  background-color: #F9F9F9;
 
 }
-
 .ionic {
   font-size: 40px;
 
