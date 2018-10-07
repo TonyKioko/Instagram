@@ -4,7 +4,7 @@ from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from app.forms import *
-
+from django.contrib import messages
 
 
 
@@ -62,6 +62,7 @@ def new_image(request):
 			new_image = form.save(commit=False)
 			new_image.user = current_user
 			new_image.save()
+            # messages.success(request, "Image uploaded!")
 			return redirect('index')
 	else:
 			form = ImageForm()

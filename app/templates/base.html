@@ -10,10 +10,20 @@
   {% else %}
     <title> Instagram </title>
   {% endif %}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
 
   {% block styles %}
     {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/basenews.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Old+Standard+TT|Roboto" rel="stylesheet">
+
   {% endblock %}
 
 </head>

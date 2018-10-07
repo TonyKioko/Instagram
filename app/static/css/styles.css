@@ -1,13 +1,11 @@
-/* *{
-  background-color: pink;
+*{
+  font-family: 'Roboto', sans-serif;
+
 }
 
-body {
-    background: red;
-  } */
-
 .ionic {
-  font-size: 30px;
+  font-size: 40px;
+
   color:black;
 }
   .navbar {
