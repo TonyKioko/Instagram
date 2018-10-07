@@ -4,12 +4,13 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css
+<!-- http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css -->
 
  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- <link rel="stylesheet" href= integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"> -->
 <!-- {% if user.is_authenticated %} -->
 <nav class="navbar fixed-top">
+<div class="container">
     <section class="logo-section"><a href="{% url "index" %}"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/></a>
       <div></div><a href="{% url "index" %}"><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/></a>
     </section>
@@ -27,7 +28,8 @@ http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css
       <a href="/logout"><ion-icon name="log-out" class="ionic"></ion-icon></a>
 <!-- <ion-icon name="log-out"></ion-icon> -->
 
-      </section>
+</section>
+    </div>
   </nav>
   <!-- {% endif %} -->
 <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>

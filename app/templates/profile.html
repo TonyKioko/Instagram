@@ -1,30 +1,190 @@
+
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% block content %}
-{{block.super}}
-<div class="container">
-    <div class="row mt-5"></div>
-    <div class="row mt-5"></div>
-    <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-    <div class="card card-info mt-5">
-        <div class="card-header">
-            <h2>Edit Profile</h2>
-        </div>
-        <div class="card-body">
-                <form action="{%url 'profile' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {% bootstrap_form form %}
-                    <div class="form-group">
-                    <input type="submit" class="btn btn-info btn-sm" value="Post">
-                </div>
+{% load static%}
 
-                </form>
+{% block content %}
+
+<div class="container top-marg profile">
+    <div class="row user">
+
+
+    <div class="col-md-3">
+        {% if profile_details.profilePhotophoto %}
+        <img src="{{profile_details.photo.url}}" alt="profile-photo" class="img-thumbnail rounded-circle prof">
+        {% else %}
+        <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof">
+        {% endif %}
+
+    </div>
+    <div class="col-md-9">
+        <ul class="list-inline username">
+          <li class="list-inline-item">
+              <span class="username">{{ profile.username }}</span>
+          </li>
+          {% if profile.username == user.username %}
+          <li class="list-inline-item">
+              <a class="btn btn-sm btn-edit" href="{% url 'edit_profile'%}">Edit Profile</a>
+          </li>
+          <li class="list-inline-item">
+              <a data-toggle="modal" data-target="#settings"><i class="fas fa-ellipsis-h"></i>
+              </a>
+          </li>
+          {% else %}
+          <!-- {% if profile in people_following%}
+          <li class="list-inline-item">
+              <a href="#" class="btn btn-sm btn-followed">Following</a>
+          </li>
+          {% else %} -->
+              <li class="list-inline-item">
+                  <!-- <a href=class="btn btn-sm btn-primary followbtn">Follow</a> -->
+                  <!-- <a href="{%url 'follow' user_id=profile.id %}" class="btn btn-sm btn-folo">Follow</a> -->
+              </li>
+          {% endif %}
+          <li class="list-inline-item">
+              <a data-toggle="modal" data-target="#settings"><i class="fas fa-ellipsis-h"></i>
+              </a>
+          </li>
+          {% endif %}
+      </ul>
+      <ul class="list-inline">
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{images|length}} </span> posts
+          </li>
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{follow}} </span> followers
+          </li>
+          <li class="list-inline-item">
+              <span class="font-weight-bold">{{following}} </span> following
+          </li>
+      </ul>
+      <ul class="list-inline">
+          <li class="list-inline-item">
+              <span>
+                  {% autoescape on %}
+                   {{profile_details.bio| safe}}
+                  {% endautoescape %}
+              </span>
+          </li>
+        </ul>
+    </div>
+    </div>
+    <div class="container">
+
+
+    <div class="row uploads">
+    {% for image in images %}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="portfolio-wrap ">
+                <div class="portfolio-wrap hovereffect">
+                    <a class="img-overlay" data-toggle="modal" data-target="#{{image.id}}" style="width:100%">
+                        <img src="{{image.picture.cdn_url}}" class="image_upload">
+                        <div class="overlay">
+                            <i class="fas fa-heart"> <span class = "no">{{image.count_likes}}</span></i>
+                            <i class="fas fa-comment"><span class = "no">{{image.count_comments}}</span></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
+    {% empty %}
     </div>
+    {% if profile.username == user.username %}
+    <div class="col-md-12">
+        <h4 class="text-center top-margin">You have no posts click <span> <a class="list-inline" href="{% url 'upload_image' %}" >  <i class="fas fa-cloud-upload-alt"></i></a> to upload</h4></span>
     </div>
-    <div class="col-md-4"></div>
+     {% else %}
+     <div class="col-md-12">
+         <h3 class="text-center top-margin"> This user has no posts </h3>
+     </div>
+     {% endif %}
+    {% endfor %}
+    {% for image in images %}
+        <div class="modal fade dets" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog dets" role="document">
+                <div class="modal-content dets">
+
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
+                                <a href="{% url 'like' image_id=image.id%}"><img id="img{{image.id}}" src="{{image.picture.cdn_url}}" class="img-thumbnail mod" alt="Image" style="cursor:pointer"></a>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="" style="margin:5px">
+
+                                <!-- <h4 class = "desc">Location</h4> -->
+                                {% if user.profile.photo %}
+                                <img src="{{user.profile.photo.cdn_url}}" alt="profile-photo" class="img-thumbnail rounded-circle user">
+                                {% else %}
+                                <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle user">
+                                {% endif %}
+                                <strong class="list-inline">{{user.username}} </strong>
+                                    <hr>
+
+                                <p class = "inline">
+                                <strong class="list-inline">{{image.profile.username}} </strong>
+                                {% autoescape on %}
+                                <span class = "list-inline">{{image.caption | safe}} </span>
+                                {% endautoescape %}
+                                </p>
+                                <p class="text-muted" style="display:block">comments</p>
+                                <hr>
+
+                                <div class="comments_prof">
+                                    {% for comment in comments %}
+                                    {% if comment.image_id == image.id %}
+
+                                    <div class="list-inline">
+                                        <p> <strong> {{comment.user.username}} </strong>
+                                        {{comment.comment}}</p>
+                                    </div>
+                                    {% else %}
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </div>
+                                <!-- <p class="text-muted">
+                                    Load comments ({{image.count_comments}})<i class="fas fa-ellipsis-h" style="padding:5px"></i>
+                                </p> -->
+                                <hr>
+                                {% if image.id in list %}
+                                    <i class="far fa-heart likedheart"></i>
+                                {% else %}
+                                    <i class="far fa-heart"></i>
+                                {% endif %}
+                                <!-- <span>
+                                    <i class="far fa-heart"></i>
+                                </span> -->
+                                <span>
+                                    <i class="far fa-comment clickme"></i>
+                                </span>
+
+                                <p style="display:block">{{image.count_likes}} likes </p>
+
+                                <p class="text-muted clickme" style="cursor:pointer">
+                                    Add a comment
+                                </p>
+                                <form action="{%url 'comment' image_id=image.id %}" method="POST" enctype="multipart/form-data" class="hideme">
+                                    {% csrf_token %}
+                                    {% bootstrap_form form %}
+                                    <input type="hidden" name="next" value="/">
+                                </form>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
 </div>
 </div>
+
+</div>
+
+
 {% endblock %}

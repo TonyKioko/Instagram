@@ -37,11 +37,12 @@
         <p>No comments yet</p>
         {% endfor %} {% endif %}
         <h6 class="ml-4">{{ image.timestamp | timesince | upper }} AGO</h6>
-        <form action="{%url 'comment' image_id=image.id %}" method="post" enctype="multipart/form-data" class="hideme">
-            {%csrf_token%}
-            {{ form.as_p}}
 
-          </form>
+        <hr>
+        <div class="card-footer">
+                                                <p class="text-center"><a href="{% url 'comment' image_id=image.id %}"  style="color:grey; text-decoration:none;">Add comment</a></p>
+                                        </div>
+
 
       </div>
 
