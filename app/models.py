@@ -1,6 +1,7 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 
 
@@ -59,7 +60,9 @@ class Image(models.Model):
         ordering = ['-timestamp']
 
 class Comment(models.Model):
-    comment = models.CharField(max_length=80)
+    # comment = models.CharField(max_length=80)
+    comment = HTMLField()
+
     timestamp = models.DateTimeField(auto_now_add=True)
     # user = models.ForeignKey(User)
     user = models.ForeignKey(User, null=True)
