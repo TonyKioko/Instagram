@@ -6,6 +6,10 @@
     background: red;
   } */
 
+.ionic {
+  font-size: 30px;
+  color:black;
+}
   .navbar {
     display: -webkit-box;
     display: -ms-flexbox;
