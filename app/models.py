@@ -31,6 +31,10 @@ class Profile(models.Model):
     def get_profile(cls):
         profile = Profile.objects.all()
         return profile
+    @classmethod
+    def profile_by_id(cls, id):
+        profile = Profile.objects.get(user = id)
+        return profile
 
 class Image(models.Model):
     image = models.ImageField(upload_to='uploads/', default='NO IMAGE')
