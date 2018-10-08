@@ -1,6 +1,8 @@
 from django import forms
 from app.models import *
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 # https://medium.com/@frfahim/django-registration-with-confirmation-email-bb5da011e4ef
 
 
