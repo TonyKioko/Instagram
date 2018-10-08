@@ -82,7 +82,7 @@
 
         </div>
         <div class="col-md-8">
-          <a href=""> <p style="font-weight:bold;font-size:12px">{{profile.user}}<br></a>
+          <a href="{% url 'userProfiles' profile.id %}"> <p style="font-weight:bold;font-size:12px">{{profile.user}}<br></a>
           <span style="font-size:12px;font-weight:normal; color:grey">{{profile.timestamp|timesince|upper}} AGO</span></p>
 
         </div>

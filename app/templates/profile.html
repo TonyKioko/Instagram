@@ -3,23 +3,41 @@
 {% load static%}
 
 {% block content %}
-<div class="container">
 
-  <div class="col-md-3">
-
-
-    {% if profile_details
-      <h1>Profile Details</h1>
-    {% else%}
-    <h1>No profile</h1>
-    {% endfor %}
-      {% if profile_details.profilePhotophoto %}
-      <img src="{{profile_details.profphoto.url}}" alt="profile-photo" class="img-thumbnail rounded-circle prof">
-      {% else %}
-      <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof">
-      {% endif %}
-
+<div class="container-fluid" style="background-color:#EBEDEF; margin-top:100px">
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8" style=" padding:30px; border-bottom: 1px solid #ddd">
+      <div class="profile">
+        <img src="{{profile.profilePhoto.url}}" alt="" style="height:150px;width:150px; border-radius:50%; float:left; margin-right:50px">
+        <p style="font-weight:bold; font-size:35px">{{profile.user}}</p>
+        <div class="">
+          <input type="text" name="" value="Edit Profile" class=" btn btn-default btn-block" style="display:inline-block; width:200px; font-size:20px">
+          <i class="fa fa-cog" aria-hidden="true" style="font-size:30px; margin-left:10px"></i>
+        </div>
+        <br>
+        <p style="font-size:20px"><span><span style="font-weight:bolder"> </span>Posts</span> <span style="margin-left:20px"><span style="font-weight:bolder">1000 </span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">4000 </span>Following</span></p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+    </div>
   </div>
+  <div class="row">
+    <p class="text-center" style="font-size:20px">Posts</p>
+  </div>
+  <div class="container">
+    {% for image in images %}
+    <a href="{}">
+      <div class="item">
+        <img src="{{image.image.url}}">
+      </div>
+    </a>
+    {% endfor %}
+</div> <!--close container-->
+
+
+
 </div>
 
 {% endblock %}

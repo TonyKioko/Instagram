@@ -18,6 +18,9 @@ urlpatterns=[
     url(r'^image_details/(?P<id>\d+)', views.image_details, name='imagedetails'),
     url(r'^searching/', views.search_results, name='searching'),
     url(r'^user/(?P<username>\w+)', views.profile, name='profiles'),
+    url(r'^user/(?P<user_id>\d+)', views.user_profile, name='userProfiles'),
+
+
 
 
 ]

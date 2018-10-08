@@ -26,7 +26,7 @@ def signup(request):
             user.save()
             current_site = get_current_site(request)
             mail_subject = 'Activate your blog account.'
-            message = render_to_string('acc_active_email.html', {
+            message = render_to_string('registration/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
@@ -40,7 +40,7 @@ def signup(request):
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignupForm()
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})
 
 def activate(request, uidb64, token):
     try:
@@ -82,6 +82,13 @@ def new_profile(request):
         form = ProfileForm()
     return render(request,'edit_profile.html',{"form":form})
 
+
+
+@login_required(login_url='/accounts/login')
+def user_profile(request, user_id):
+    profile = Profile.objects.get(id=user_id)
+    images = Image.objects.all().filter(user_id=user_id)
+    return render(request, 'profile.html', {'profile':profile, 'images':images})
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
     title = "Profile"
@@ -91,18 +98,16 @@ def profile(request, username):
     id = request.user.id
     # liked_images = Likes.objects.filter(user_id=id)
     # mylist = [i.image_id for i in liked_images]
-    # form = CommentForm()
+    form = CommentForm()
 
     try :
-        profile_details = Profile.profile_by_id(profile.id)
+        profile_details = Profile.get_by_id(profile.id)
     except:
-        # profile_details = Profile.filter_by_id(profile.id)
-        profile_details = Profile.profile_by_id(profile.id)
-        
+        profile_details = Profile.filter_by_id(profile.id)
 
 
-    # images = Image.get_profile_pic(profile.id)
-    return render(request, 'profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details})
+    images = Image.get_profile_pic(profile.id)
+    return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
 
 @login_required(login_url='/accounts/login')
 def new_image(request):
