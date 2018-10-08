@@ -7,7 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 
 def send_activation_email(user, current_site, receiver):
     subject = 'Activate your pixagram account'
-    sender = 'tonykm101@gmail.com'
+    sender = 'tonnibravo12@gmail.com'
     message = render_to_string('registration/acc_active_email.html', {
         'user':user,
         'domain':current_site.domain,
