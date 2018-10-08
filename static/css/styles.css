@@ -1,11 +1,28 @@
-*{
-  background-color: pink;
+
+.top-images {
+  height:50px;
+  width:50px;
+  border: 4px double #F3176E;
+
+
 }
 
-body {
-    background: red;
-  }
 
+#profiles{
+  border: 4px double #F3176E;;
+}
+*{
+  font-family: 'Roboto', sans-serif;
+}
+body{
+  background-color: #F9F9F9;
+
+}
+.ionic {
+  font-size: 40px;
+
+  color:black;
+}
   .navbar {
     display: -webkit-box;
     display: -ms-flexbox;
