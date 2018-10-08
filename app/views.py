@@ -11,11 +11,13 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
+from django.core.mail import send_mail
+
 from django.contrib.auth import login, authenticate
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from .emails import send_activation_email
+# from .emails import send_activation_email
 from app.models import *
 
 import smtplib
@@ -32,20 +34,21 @@ def signup(request):
             user.save()
             current_site = get_current_site(request)
             to_email = form.cleaned_data.get('email')
-            send_activation_email(user, current_site, to_email)
+            # send_activation_email(user, current_site, to_email)
 
-            # mail_subject = 'Activate your pixargram account.'
-            # message = render_to_string('registration/acc_active_email.html', {
-            #     'user': current_user,
-            #     'domain': current_site.domain,
-            #     'uid':urlsafe_base64_encode(force_bytes(current_user.pk)),
-            #     'token':account_activation_token.make_token(current_user),
-            # })
-            # to_email = form.cleaned_data.get('email')
-            # email = EmailMessage(
-            #             mail_subject, message, to=[to_email]
-            # )
+            mail_subject = 'Activate your pixargram account.'
+            message = render_to_string('registration/acc_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':account_activation_token.make_token(user),
+            })
+            to_email = form.cleaned_data.get('email')
+            email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+            )
             # email.send()
+            send_mail(mail_subject,message,'tonnibravo12@gmail.com',[to_email],fail_silently=False)
 
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
