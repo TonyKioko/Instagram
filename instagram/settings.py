@@ -14,6 +14,7 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config,Csv
+import smtplib
 # from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -177,4 +178,5 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_ACTIVATION_DAYS = 7
 SITE_ID = 3
+smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
 django_heroku.settings(locals())
