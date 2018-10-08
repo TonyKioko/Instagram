@@ -20,6 +20,16 @@ from decouple import config,Csv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+# EMAIL_USE_TLS=True
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_ACTIVATION_DAYS = 7
+SITE_ID = 3
+
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -115,14 +125,14 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'instagram',
-        'USER': 'tony',
-    'PASSWORD':'1234',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'instagram',
+#         'USER': 'tony',
+#     'PASSWORD':'1234',
+#     }
+# }
 
 
 # Password validation
@@ -171,13 +181,13 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Email configurations remember to install python-decouple
 # EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_USE_TLS=True
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_ACTIVATION_DAYS = 7
-SITE_ID = 3
+# # EMAIL_USE_TLS=True
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT')
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# ACCOUNT_ACTIVATION_DAYS = 7
+# SITE_ID = 3
 # smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
 django_heroku.settings(locals())
