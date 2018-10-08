@@ -78,11 +78,17 @@
 
 </div>
         <div class="col-md-3">
+          {% if profile.profile.profilePhoto %}
           <img src="{{profile.profilePhoto.url}}" id="profiles" style="border-radius:50%;height:50px;width:50px;">
+
+          {%else%}
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" class="profiles" style="border-radius:50%;height:50px;width:50px;">
+
+          {% endif %}
 
         </div>
         <div class="col-md-8">
-          <a href="{% url 'userProfiles' profile.id %}"> <p style="font-weight:bold;font-size:12px">{{profile.user}}<br></a>
+          <a href=""> <p style="font-weight:bold;font-size:12px">{{profile.user}}<br></a>
           <span style="font-size:12px;font-weight:normal; color:grey">{{profile.timestamp|timesince|upper}} AGO</span></p>
 
         </div>
