@@ -7,7 +7,7 @@
 
     <div class="card style=" margin-bottom:100px; "">
       <div class="card-header">
-        <img src="{{image.image.url}}" alt="" style="height:50px;width:50px; border-radius:50%">
+        <img src="{{image.image.url}}" class="top-images" style="height:50px;width:50px; border-radius:50%">
         <p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user}}</p>
       </div>
       <a href="{% url 'imagedetails' id=image.id %}">

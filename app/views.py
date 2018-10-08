@@ -82,25 +82,25 @@ def new_profile(request):
         form = ProfileForm()
     return render(request,'edit_profile.html',{"form":form})
 
-@login_required(login_url='/accounts/login/')
-def profile(request, username):
-    title = "Profile"
-    profile = User.objects.get(username=username)
-    comments = Comments.objects.all()
-    users = User.objects.get(username=username)
-    id = request.user.id
-    # liked_images = Likes.objects.filter(user_id=id)
-    # mylist = [i.image_id for i in liked_images]
-    form = CommentForm()
-
-    try :
-        profile_details = Profile.get_by_id(profile.id)
-    except:
-        profile_details = Profile.filter_by_id(profile.id)
-
-
-    images = Image.get_profile_pic(profile.id)
-    return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
+# @login_required(login_url='/accounts/login/')
+# def profile(request, username):
+#     title = "Profile"
+#     profile = User.objects.get(username=username)
+#     comments = Comments.objects.all()
+#     users = User.objects.get(username=username)
+#     id = request.user.id
+#     # liked_images = Likes.objects.filter(user_id=id)
+#     # mylist = [i.image_id for i in liked_images]
+#     form = CommentForm()
+#
+#     try :
+#         profile_details = Profile.get_by_id(profile.id)
+#     except:
+#         profile_details = Profile.filter_by_id(profile.id)
+#
+#
+#     images = Image.get_profile_pic(profile.id)
+#     return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
 
 @login_required(login_url='/accounts/login')
 def new_image(request):
@@ -152,13 +152,15 @@ def image_details(request,id):
 
 def search_results(request):
 
-    if 'caption' in request.GET and request.GET["caption"]:
-        search_term = request.GET.get("caption")
-        found_images = Image.search_by_caption(search_term)
+    # if 'caption' in request.GET and request.GET["caption"]:
+    if 'username' in request.GET and request.GET["username"]:
+
+        search_term = request.GET.get("username")
+        found_users = Profile.search_by_username(search_term)
         message = f"{search_term}"
         print(search_term)
 
-        context = {"images":found_images,"message":message}
+        context = {"users":found_users,"message":message}
 
         return render(request, 'search.html',context)
 

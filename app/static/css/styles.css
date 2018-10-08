@@ -1,4 +1,12 @@
 
+.top-images {
+  height:50px;
+  width:50px;
+  border: 4px double #F3176E;
+
+
+}
+
 
 #profiles{
   border: 4px double #F3176E;;

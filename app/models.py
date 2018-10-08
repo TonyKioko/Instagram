@@ -13,7 +13,7 @@ class Profile(models.Model):
     # user = models.ForeignKey(User,on_delete=models.CASCADE)
     user = models.ForeignKey(User, null=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
         return self.bio
 
@@ -22,7 +22,10 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
-
+    @classmethod
+    def search_by_username(cls,search_term):
+        users = cls.objects.filter(user__username__icontains=search_term)
+        return users
 
     @classmethod
     def get_profile(cls):
