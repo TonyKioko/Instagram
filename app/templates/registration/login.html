@@ -31,10 +31,11 @@
             <div class="form-group">
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
             </div>
+            <input type="hidden" name="next" value="{{next}}">
 
-            <input type="hidden" name="next" value="{% url 'index' %}">
-            <!-- <p>Don't have an account? <a href="/accounts/register/" class="btn btn-default">Sign Up</a></p> -->
-            <p>Don't have an account? <a href="/signup/" class="btn btn-default">Sign Up</a></p>
+            <!-- <input type="hidden" name="next" value="{% url 'index' %}"> -->
+            <p>Don't have an account? <a href="/accounts/register/" class="btn btn-default">Sign Up</a></p>
+            <!-- <p>Don't have an account? <a href="/signup/" class="btn btn-default">Sign Up</a></p> -->
 
 
           </form>
