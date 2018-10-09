@@ -2,8 +2,7 @@
 {% load bootstrap4 %}
 {% block content %}
 {{block.super}}}
-<div class="container mt-5" style="margin-top:100px;"></div>
-<div class="container mt-5">
+<div class="container mt-5"style="margin-top:300px;">
     <div class="row mt-1"></div>
     <div class="row mt-5">
     </div>
@@ -11,6 +10,8 @@
         {% for prof in profile %}
         {% if user.id == prof.user.id %}
         <h5>{{prof.user.username}}</h5>
+        <br>
+        <a href="{% url "profile" %}">EDIT PROFILE</a>
 
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -23,7 +24,8 @@
             <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
             <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
                 <!-- {% if prof.bio %} -->
-                    <h5>{{prof.user.username}}</h5>
+                    <!-- <h5>{{prof.user.username}}</h5> -->
+                    <h2>Bio :</h2>
                     <p>{{prof.bio}}</p>
                 <!-- {% else %}
                     <h5>{{prof.user.username}}</h5>
@@ -48,6 +50,10 @@
     <hr>
     <div class="container">
         <div class="row">
+          <h3 style="margin-right:40px;">Posts</h3>
+          <br>
+          <a href="{% url "profile" %}">EDIT PROFILE</a>
+
                 {% for img in image%}
             {% if img.user.id == user.id %}
             <div class="col-md-4 col-lg-4 col-sm-8 col-xs-8">
