@@ -20,6 +20,7 @@ import smtplib
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 # EMAIL_USE_TLS=True
 EMAIL_HOST = config('EMAIL_HOST')
@@ -192,7 +193,7 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # smtp=smtplib.SMTP(host=EMAIL_HOST,port=EMAIL_PORT)
 django_heroku.settings(locals())
 
-# 
+#
 # EMAIL_USE_TLS=True
 # EMAIL_HOST='smtp.gmail.com'
 # EMAIL_PORT=587
