@@ -1,3 +1,4 @@
+
 {% load bootstrap4 %} {% load staticfiles %}
 <!DOCTYPE html>
 <html>
@@ -10,15 +11,53 @@
   {{form.media}}
 
 {% block styles %} {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/news.css' %}"> {% endblock %}
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}"> {% endblock %}
 
 </head>
 
 <body>
+  <nav class="navbar fixed-top" id="navbarrr">
+  <div class="container">
+      <section class="logo-section"><a href="{% url "index" %}"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/></a>
+        <div></div><a href="{% url "index" %}"><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/></a>
+      </section>
+
+
+      <form class="navbar-form" role="search" action="{% url 'searching' %}" style="width:auto">
+
+         <div class="input-group">
+           <input type="text" class="form-control" placeholder="Search users" name="username" style="height:38px;">
+           <div class="input-group-btn">
+             <!-- <button class="btn" type="submit" style="height:39px; width:39px;"><i class="glyphicon glyphicon-search"></i></button> -->
+           </div>
+         </div>
+
+       </form>
+      <section class="icons-section" >
+
+        <a href="{% url "add_photo"%}"><ion-icon name="add" class="ionic"></ion-icon></a>
+        <a href="{% url "userProfiles" %}"><ion-icon name="contact" class="ionic"></ion-icon></a>
+
+        <!-- <a href="{% url "profile" %}"><ion-icon name="contact" class="ionic"></ion-icon></a> -->
+
+
+
+        <a href="/logout"><ion-icon name="log-out" class="ionic"></ion-icon></a>
+
+  </section>
+      </div>
+    </nav>
+<br>
+<br>
+<br>
+
 <div class="container" style="margin-top:40px;">
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
+
       <form  action="{%url 'add_photo'%}" method="POST" enctype="multipart/form-data">
         {%csrf_token%}
 
@@ -33,6 +72,8 @@
 
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+  
   {% bootstrap_javascript %} {% endblock %}
 
 </body>

@@ -1,4 +1,10 @@
 
+#navbarr{
+  background: #0099F7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F11712, #0099F7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F11712, #0099F7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+margin-bottom: 80px;
+}
 .top-images {
   height:50px;
   width:50px;
@@ -7,6 +13,12 @@
 
 }
 
+#navbarrr{
+  background: #0099F7;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F11712, #0099F7);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F11712, #0099F7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+margin-bottom:80px;
+}
 
 #profiles{
   border: 4px double #F3176E;;
@@ -23,6 +35,13 @@ body{
 
   color:black;
 }
+
+.ionic:hover {
+  /* font-size: 46px; */
+
+  color:white;
+}
+
   .navbar {
     display: -webkit-box;
     display: -ms-flexbox;

@@ -2,11 +2,9 @@
 {% load bootstrap4 %}
 {% block content %}
 {{block.super}}}
-<div class="container mt-5"style="margin-top:300px;">
-    <div class="row mt-1"></div>
-    <div class="row mt-5">
-    </div>
-    <div class="row mt-5">
+<div class="container mt-5"style="margin-top:40px;">
+
+    <div class="row" style="margin-top:100px;">
         {% for prof in profile %}
         {% if user.id == prof.user.id %}
         <h5>{{prof.user.username}}</h5>
@@ -15,8 +13,9 @@
 
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              
                 {% if prof.profilePhoto %}
-                    <img src="{{prof.profilePhoto.url}}" alt="" class="img-fluid" style="border-radius:50%">
+                    <img src="{{prof.profilePhoto.url}}" alt="" class="img-fluid" style="border-radius:50%;width:150px;height:150px;">
                 {% else %}
                     <img src="/static/img/avatar.png" alt="" class="img-fluid rounded-circle">
                 {% endif %}
@@ -49,10 +48,12 @@
     </div>
     <hr>
     <div class="container">
+      <a href="{% url "profile" %}">EDIT PROFILE</a>
+      <hr>
         <div class="row">
           <h3 style="margin-right:40px;">Posts</h3>
           <br>
-          <a href="{% url "profile" %}">EDIT PROFILE</a>
+          <!-- <a href="{% url "profile" %}">EDIT PROFILE</a> -->
 
                 {% for img in image%}
             {% if img.user.id == user.id %}
