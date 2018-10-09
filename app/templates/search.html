@@ -3,8 +3,8 @@
 <div class="container" style="margin-top:120px;">
 
   <div class="row">
-    {% if users %}
-      <h2 class="text-center" style="color:black">Found {{ users|length }} User of search term : <em>{{message}}</em> </h2>
+    {% if found_users %}
+      <h2 class="text-center" style="color:black">Found {{ found_users|length }} User of search term : <em>{{message}}</em> </h2>
       <hr>
     {% else %}
       <h2 style="color:black"> Found 0 users for the search term {{message}}</h2>
@@ -17,15 +17,10 @@
 
   <!-- {% if images %} -->
 <hr>
-    {% for user in users %}
-    <a href="#">
-      <div class="col-md-4 img-cont">
-        <img src="{{ image.image.url }}" class="img-responsive i-images">
-        <div class="overlay">
-          <div class="text">{{user.user.username}}</div>
-        </div>
-      </div>
-    </a>
+    {% for user in found_users %}
+
+
+          <h2 style="color:red">{{user.user.Profile.profilePhoto}}</h2>
 
 
 

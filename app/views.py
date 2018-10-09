@@ -95,32 +95,42 @@ def new_profile(request):
         form = ProfileForm()
     return render(request,'edit_profile.html',{"form":form})
 
-
-
 @login_required(login_url='/accounts/login')
-def user_profile(request, user_id):
-    profile = Profile.objects.get(id=user_id)
-    images = Image.objects.all().filter(user_id=user_id)
-    return render(request, 'profile.html', {'profile':profile, 'images':images})
-@login_required(login_url='/accounts/login/')
-def profile(request, username):
-    title = "Profile"
-    profile = User.objects.get(username=username)
-    comments = Comment.objects.all()
-    users = User.objects.get(username=username)
-    id = request.user.id
-    # liked_images = Likes.objects.filter(user_id=id)
-    # mylist = [i.image_id for i in liked_images]
-    form = CommentForm()
+def user_profile(request):
+    title = 'Insta-Gram'
+    current_user = request.user
+    profile = Profile.get_profile()
+    image = Image.get_images()
+    comments = Comment.get_comment()
+    return render(request,'profile.html',{"title":title,
+                                                  "comments":comments,
+                                                  "image":image,
+                                                  "user":current_user,
+                                                  "profile":profile,})
+# def user_profile(request, user_id):
+#     profile = Profile.objects.get(id=user_id)
+#     images = Image.objects.all().filter(user_id=user_id)
+#     return render(request, 'profile.html', {'profile':profile, 'images':images})
 
-    try :
-        profile_details = Profile.get_by_id(profile.id)
-    except:
-        profile_details = Profile.filter_by_id(profile.id)
-
-
-    images = Image.get_profile_pic(profile.id)
-    return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
+# @login_required(login_url='/accounts/login/')
+# def profile(request, username):
+#     title = "Profile"
+#     profile = User.objects.get(username=username)
+#     comments = Comment.objects.all()
+#     users = User.objects.get(username=username)
+#     id = request.user.id
+#     # liked_images = Likes.objects.filter(user_id=id)
+#     # mylist = [i.image_id for i in liked_images]
+#     form = CommentForm()
+#
+#     try :
+#         profile_details = Profile.get_by_id(profile.id)
+#     except:
+#         profile_details = Profile.filter_by_id(profile.id)
+#
+#
+#     images = Image.get_profile_pic(profile.id)
+#     return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
 
 @login_required(login_url='/accounts/login')
 def new_image(request):
@@ -171,6 +181,8 @@ def image_details(request,id):
 
 
 def search_results(request):
+    current_user = request.user
+    profile = Profile.get_profile()
 
     # if 'caption' in request.GET and request.GET["caption"]:
     if 'username' in request.GET and request.GET["username"]:
@@ -180,7 +192,7 @@ def search_results(request):
         message = f"{search_term}"
         print(search_term)
 
-        context = {"users":found_users,"message":message}
+        context = {"found_users":found_users,"message":message,"profiles":profile, "user":current_user}
 
         return render(request, 'search.html',context)
 

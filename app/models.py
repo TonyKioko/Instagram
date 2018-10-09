@@ -64,10 +64,14 @@ class Image(models.Model):
         self.save()
 
     def delete_image(self):
-        self.delete()
+        self.delete
+    @classmethod
+    def get_images(cls):
+        image = Image.objects.all()
+        return image
 
     @classmethod
-    def update_caption(cls,id,caption):
+    def update_capion(cls,id,caption):
         updated_caption = Image.objects.filter(id=id).update(caption = caption)
         return updated_caption
     @classmethod
@@ -96,5 +100,10 @@ class Comment(models.Model):
 
     def delete_comment(self):
         self.delete()
+    @classmethod
+    def get_comment(cls):
+        comment = Comment.objects.all()
+        return comment
+
     class Meta:
         ordering = ['-timestamp']

@@ -1,43 +1,90 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-{% load static%}
-
 {% block content %}
-
-<div class="container-fluid" style="background-color:#EBEDEF; margin-top:100px">
-  <div class="row">
-    <div class="col-sm-2">
+{{block.super}}}
+<div class="container mt-5" style="margin-top:100px;"></div>
+<div class="container mt-5">
+    <div class="row mt-1"></div>
+    <div class="row mt-5">
     </div>
-    <div class="col-sm-8" style=" padding:30px; border-bottom: 1px solid #ddd">
-      <div class="profile">
-        <img src="{{profile.profilePhoto.url}}" alt="" style="height:150px;width:150px; border-radius:50%; float:left; margin-right:50px">
-        <p style="font-weight:bold; font-size:35px">{{profile.user}}</p>
-        <div class="">
-          <input type="text" name="" value="Edit Profile" class=" btn btn-default btn-block" style="display:inline-block; width:200px; font-size:20px">
-          <i class="fa fa-cog" aria-hidden="true" style="font-size:30px; margin-left:10px"></i>
+    <div class="row mt-5">
+        {% for prof in profile %}
+        {% if user.id == prof.user.id %}
+        <h5>{{prof.user.username}}</h5>
+
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                {% if prof.profilePhoto %}
+                    <img src="{{prof.profilePhoto.url}}" alt="" class="img-fluid" style="border-radius:50%">
+                {% else %}
+                    <img src="/static/img/avatar.png" alt="" class="img-fluid rounded-circle">
+                {% endif %}
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                <!-- {% if prof.bio %} -->
+                    <h5>{{prof.user.username}}</h5>
+                    <p>{{prof.bio}}</p>
+                <!-- {% else %}
+                    <h5>{{prof.user.username}}</h5>
+                {% endif %} -->
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        {% endif %}
+        {% empty %}
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <img src="/static/img/avatar.png" alt="" class="img-fluid rounded-circle">
+            </div>
+            <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
+                <p>{{user.username}}</p>
+            </div>
         </div>
-        <br>
-        <p style="font-size:20px"><span><span style="font-weight:bolder"> </span>Posts</span> <span style="margin-left:20px"><span style="font-weight:bolder">1000 </span> Followers</span> <span style="margin-left:20px"> <span style="font-weight:bolder">4000 </span>Following</span></p>
-      </div>
+        {% endfor %}
+        <hr>
     </div>
-    <div class="col-sm-2">
+    <hr>
+    <div class="container">
+        <div class="row">
+                {% for img in image%}
+            {% if img.user.id == user.id %}
+            <div class="col-md-4 col-lg-4 col-sm-8 col-xs-8">
+                    {% if img.image %}
+                    <div class="card">
+                        <div class="card-header">
+                                <img src="{{img.profile.profilePic.url}}" class="img-fluid rounded-circle" style="width:8%;height:8%">
+                                {% if user.id == img.user.id %}
+                                <a href="{% url 'profile' %}">{{img.user.username}}</a>
+                                {% else %}
+                                <a href="#">{{img.user.username}}</a>
+                                {% endif %}
+                        </div>
+                        <div class="card-body">
+                            {% if img.image.url %}
+                                <img src="{{img.image.url}}" alt="img-fluid" style="width:100%; height:100%">
+                                <p>{{img.caption}}</p>
+                                <p>{{img.timestamp | timesince}} ago</p>
+                                {% if img.likes >= 1 %}
+                                <p><i class="fa fa-heart fa-2x ml-4" style="color:red"></i><b>{{img.likes}} likes</b></p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                                {% for comment in comments %}
+                                {% if img.id == comment.image.id %}
+                                <p><b>{{comment.user}}</b>  {{comment.comments}}</p>
+                                <h6  style="font-size:12px"><i>{{comment.comment_date | timesince}} ago</i></h6>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <p class="text-center" style="font-size:20px">Posts</p>
-  </div>
-  <div class="container">
-    {% for image in images %}
-    <a href="{}">
-      <div class="item">
-        <img src="{{image.image.url}}">
-      </div>
-    </a>
-    {% endfor %}
-</div> <!--close container-->
-
-
-
 </div>
-
 {% endblock %}
