@@ -44,9 +44,9 @@ def signup(request):
                 'token':account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                        mail_subject, message, to=[to_email]
-            )
+            # email = EmailMessage(
+            #             mail_subject, message, to=[to_email]
+            # )
             # email.send()
             send_mail(mail_subject,message,'tonykioko384@gmail.com',[to_email],fail_silently=False)
 
