@@ -2,7 +2,7 @@
 #### Instagram clone Application created on 6/10/2018
 #### Author: **Tony Kioko**
 ## Description
-This is a social web application where users can post their favorite images, follow other user and like their images.
+This is a social web application where users can post their favorite images, comments and like images and follow other users.
 
 
 ## Features
