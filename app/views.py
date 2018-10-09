@@ -48,7 +48,7 @@ def signup(request):
                         mail_subject, message, to=[to_email]
             )
             # email.send()
-            send_mail(mail_subject,message,'tonnibravo12@gmail.com',[to_email],fail_silently=False)
+            send_mail(mail_subject,message,'tonykioko384@gmail.com',[to_email],fail_silently=False)
 
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
