@@ -9,7 +9,10 @@ margin-bottom:80px;
   height:50px;
   width:50px;
   border: 4px double #F3176E;
-
+}
+  .far:hover{
+    color;#2984D0;
+  }
 
 }
 

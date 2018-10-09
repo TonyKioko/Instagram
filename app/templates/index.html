@@ -20,7 +20,7 @@
       <div id="likes">
 
         <!-- <p>{{image.user}}</p> -->
-        <a href="{% url 'comment' image_id=image.id %}" style="color:black;font-size:12px;font-weight:lighter;;"><i class="far fa-comment fa-2x ml-4"></i></a>
+        <a href="{% url 'comment' image_id=image.id %}" style="color:black;font-size:12px;font-weight:lighter;;"><i class="far fa-comment  fa-2x ml-4"></i></a>
 
         <a id="like" href="{% url 'likephoto' id=image.id%}" style="color:black;font-size:12px;"><i class="far fa-heart fa-2x ml-3"></i>
           </a> {% if image.likes %}
