@@ -21,7 +21,7 @@ This is a social web application where users can post their favorite images, fol
 * To run the app, type python manage.py runserver from your virtual environment on the terminal. In your favorite browser, open the link provided by the local host.
 
 ### Live Link ###
-<!-- [Terapixar](https://terapixar.herokuapp.com/) -->
+[Pixargram](https://terapixar.herokuapp.com/)
 
 ## Technologies used ##
 
