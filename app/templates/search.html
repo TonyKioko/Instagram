@@ -3,20 +3,43 @@
 <div class="container" style="margin-top:120px;">
 
   <div class="row">
+    <div class="col md-3"></div>
     {% if found_users %}
-      <h2 class="text-center" style="color:black">Found {{ found_users|length }} User of search term : <em>{{message}}</em> </h2>
+      <h4 class="text-center" style="color:black">Found {{ found_users|length }} User with username : <em>{{message}}</em> </h4>
       <hr>
     {% else %}
       <h2 style="color:black"> Found 0 users for the search term {{message}}</h2>
       <hr>
     {% endif %}
+    <div class="col md-3"></div>
 
   </div>
+<div class="row">
+  <div class="col md-1"></div>
 
-THis is shit
-{% for user in found_users%}
-<h1>{{user.user.username}}</h1>
-{%endfor%}
+  <!-- THis is shit -->
+
+  {% for user in found_users%}
+  <h1>{{user.Profile.bio}}</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{user.user.username}}
+
+        <a href="{% url 'sprofile' user_id=user.user.id %}" class="btn btn-block btn-info">View Profile</a>
+
+      </h1>
+
+    </div>
+    <!-- <div class="col-md-2"></div> -->
+
+  </div>
+  <!-- <h1>{{user.user.Profile.timestamp}}</h1> -->
+
+  {%endfor%}
+  <div class="col md-3"></div>
+
+</div>
+
 
   </div>
 </div>

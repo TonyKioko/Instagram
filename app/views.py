@@ -200,3 +200,17 @@ def search_results(request):
         message = "You haven't searched for any term"
         # context={"message":message}
         return render(request, 'search.html',{"message":message})
+
+
+@login_required(login_url="/accounts/login/")
+def users_profiles(request,user_id):
+    current_user = request.user
+    image = Image.get_images()
+    profile = Profile.get_profile()
+    comment = Comment.get_comment()
+    user = get_object_or_404(User, pk=user_id)
+    return render(request,'users_profile.html',{"user":current_user,
+                                               "images":image,
+                                               "my_user":user,
+                                               "comments":comment,
+                                               "profile":profile})
