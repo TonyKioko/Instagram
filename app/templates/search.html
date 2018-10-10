@@ -13,19 +13,11 @@
 
   </div>
 
-  <div class="container">
+THis is shit
+{% for user in found_users%}
+<h1>{{user.user.username}}</h1>
+{%endfor%}
 
-  <!-- {% if images %} -->
-<hr>
-    {% for user in found_users %}
-
-
-          <h2 style="color:red">{{user.user.Profile.profilePhoto}}</h2>
-
-
-
-    {% endfor %}
-  <!-- {% endif %} -->
   </div>
 </div>
 {% endblock %}
