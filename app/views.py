@@ -93,44 +93,16 @@ def new_profile(request):
             return redirect('index')
     else:
         form = ProfileForm()
-    return render(request,'edit_profile.html',{"form":form})
+    return render(request,'manage_profile.html',{"form":form})
 
 @login_required(login_url='/accounts/login')
 def user_profile(request):
-    title = 'Insta-Gram'
     current_user = request.user
+    images = Image.get_images()
     profile = Profile.get_profile()
-    image = Image.get_images()
     comments = Comment.get_comment()
-    return render(request,'profile.html',{"title":title,
-                                                  "comments":comments,
-                                                  "image":image,
-                                                  "user":current_user,
-                                                  "profile":profile,})
-# def user_profile(request, user_id):
-#     profile = Profile.objects.get(id=user_id)
-#     images = Image.objects.all().filter(user_id=user_id)
-#     return render(request, 'profile.html', {'profile':profile, 'images':images})
-
-# @login_required(login_url='/accounts/login/')
-# def profile(request, username):
-#     title = "Profile"
-#     profile = User.objects.get(username=username)
-#     comments = Comment.objects.all()
-#     users = User.objects.get(username=username)
-#     id = request.user.id
-#     # liked_images = Likes.objects.filter(user_id=id)
-#     # mylist = [i.image_id for i in liked_images]
-#     form = CommentForm()
-#
-#     try :
-#         profile_details = Profile.get_by_id(profile.id)
-#     except:
-#         profile_details = Profile.filter_by_id(profile.id)
-#
-#
-#     images = Image.get_profile_pic(profile.id)
-#     return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
+    context= {"comments":comments,"image":images,"user":current_user,"profile":profile,}
+    return render(request,'profile.html',context)
 
 @login_required(login_url='/accounts/login')
 def new_image(request):
@@ -145,7 +117,8 @@ def new_image(request):
 			return redirect('index')
 	else:
 			form = ImageForm()
-	return render(request, 'new_image.html',{"form":form })
+            # context= {"form":form}
+	return render(request, 'new_image.html',{"form":form})
 
 
 @login_required(login_url='/accounts/login/')
@@ -168,6 +141,7 @@ def comment(request,image_id):
 def like_photo(request,id):
     image = Image.objects.get(id=id)
     image.likes = image.likes + 1
+    
     image.save()
     return redirect('index')
 
@@ -180,7 +154,7 @@ def image_details(request,id):
     return render(request, 'image_details.html',context)
 
 
-def search_results(request):
+def search_users(request):
     current_user = request.user
     profile = Profile.get_profile()
 
@@ -209,8 +183,5 @@ def users_profiles(request,user_id):
     profile = Profile.get_profile()
     comment = Comment.get_comment()
     user = get_object_or_404(User, pk=user_id)
-    return render(request,'users_profile.html',{"user":current_user,
-                                               "images":image,
-                                               "my_user":user,
-                                               "comments":comment,
-                                               "profile":profile})
+    context = {"user":current_user, "images":image,"my_user":user,"comments":comment,"profile":profile}
+    return render(request,'users_profile.html',context)

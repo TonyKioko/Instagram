@@ -3,24 +3,27 @@
 {% block content %}
 {{block.super}}
 <div class="container">
-
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="row">
   <div class="col-sm-3">
-
+<!-- Empty col -->
   </div>
-  <div class="col-sm-6" style="margin-top:100px">
-    <div class="well" style="background-color:white; margin-bottom:70px">
-      <img src="{{image.image.url}}" class="img-responsive">
-      <div class="like" style="font-size:30px">
-      </div>
-      <header style="margin-top:20px; border-bottom: 1px solid #ddd">
-        <p style="float:left; margin-right:20px; margin-top:20px; font-weight:bolder">Posted By :</p>
-        <img src="{{image.image.url}}" alt="" style="height:50px;width:50px; border-radius:50%">
-        <p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px; margin-bottom:10px">{{image.user}}</p>
-        <p style="font-size:12px;color:grey; margin-top:10px">{{image.timestamp|timesince|upper}} ago</p>
+  <div class="col-sm-6">
+    <div class="well" style="background-color:#F9F9F9;">
+      <img src="{{image.image.url}}" alt="{{image.image.caption}}"class="img-responsive">
+      <header style="margin-top:3%;">
+        <p style="float:left;margin-top:20px; font-weight:800">Posted By :</p>
+        <img class="ml-10" src="{{image.image.url}}" alt="" style="height:50px;width:50px; border-radius:50%">
+        <p  style="display:inline; margin:16px; font-weight:bolder; font-size:16px; margin-bottom:10px">{{image.user}}</p>
+        <p style="font-size:12px;color:#DAAA4D; margin-top:10px">{{image.timestamp|timesince|upper}} ago</p>
+        <hr>
       </header>
-      <p style="margin-top:6px;font-size:16px">{{image.likes}} <span style="">Likes</span></p><br>
-      <p style=""><strong>{{ comments | length}} Comments</strong></p>
+      <p style="margin-top:4px;">{{image.likes}} <span style="color:#DAAA4D">Likes</span></p><br>
+      <p style=""><strong>{{ comments | length}} <span style="color:#DAAA4D">Comments</span> </strong></p>
       {% for comment in comments %}
       {% if comment.image_id == image.id %}
 
@@ -31,6 +34,7 @@
     </div>
   </div>
   <div class="col-sm-3">
+    <!-- Empty col -->
 
   </div>
 </row>
