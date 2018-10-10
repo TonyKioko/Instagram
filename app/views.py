@@ -101,7 +101,7 @@ def user_profile(request):
     images = Image.get_images()
     profile = Profile.get_profile()
     comments = Comment.get_comment()
-    context= {"comments":comments,"image":images,"user":current_user,"profile":profile,}
+    context= {"comments":comments,"images":images,"user":current_user,"profile":profile,}
     return render(request,'profile.html',context)
 
 @login_required(login_url='/accounts/login')
@@ -141,7 +141,7 @@ def comment(request,image_id):
 def like_photo(request,id):
     image = Image.objects.get(id=id)
     image.likes = image.likes + 1
-    
+
     image.save()
     return redirect('index')
 
