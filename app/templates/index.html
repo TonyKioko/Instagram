@@ -8,7 +8,9 @@
     <div class="card style=" margin-bottom:100px; "">
       <div class="card-header">
         <img src="{{image.image.url}}" class="top-images" style="height:50px;width:50px; border-radius:50%">
-        <a href="{% url 'userProfiles' %}"><p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user.username}}</p></a>
+        <a href=""><p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user.username}}</p></a>
+
+        <!-- <a href="{% url 'userProfiles' %}"><p style="display:inline; margin-left:10px; font-weight:bolder; font-size:16px">{{image.user.username}}</p></a> -->
       </div>
       <a href="{% url 'imagedetails' id=image.id %}">
 

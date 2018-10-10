@@ -14,21 +14,13 @@
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 
-                <!-- {% if prof.profilePhoto %}
-                    <img src="{{prof.profilePhoto.url}}" alt="" class="img-fluid" style="border-radius:50%;width:150px;height:150px;">
-                {% else %}
-                    <img src="/static/img/avatar.png" alt="" class="img-fluid rounded-circle">
-                {% endif %} -->
             </div>
             <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
             <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
-                <!-- {% if prof.bio %} -->
-                    <!-- <h5>{{prof.user.username}}</h5> -->
+
                     <h2>Bio :</h2>
                     <p>{{prof.bio}}</p>
-                <!-- {% else %}
-                    <h5>{{prof.user.username}}</h5>
-                {% endif %} -->
+
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
         {% endif %}
@@ -76,7 +68,7 @@
                                 {{image.caption | safe}}
                                 <p>{{image.timestamp | timesince}} ago</p>
                                 {% if image.likes >= 1 %}
-                                <p><i class="fa fa-heart fa-2x ml-4" style="color:red"></i><b>{{image.likes}} likes</b></p>
+                                <p><i class="fa fa-heart fa-2x ml-4" style="color:blue"></i><b>{{image.likes}} likes</b></p>
                                 {% endif %}
                             {% endif %}
                         </div>
