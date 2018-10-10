@@ -3,30 +3,32 @@
 {% load static %}
 {% block content %}
 {{block.super}}
-<div class="container mt-5"></div>
 <div class="container mt-5">
     <div class="container">
-    <div class="row mt-5"></div>
-    <div class="row mt-5"></div>
+      <br>
+      <br>
+
     <div class="row mt-5">
 
-        {% for prof in profile %}
-        {% if my_user.id == prof.user.id %}
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        {% for p in profile %}
+        {% if my_user.id == p.user.id %}
+        <div class="col-md-4">
 
 
         </div>
-        <div class="col-lg-1 col-md-1 col-xs-1 col-sm-1"></div>
-        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-5">
-            {% if prof.bio %}
-                <h5>{{prof.user.username | title}} 
-                <p>{{prof.bio}}</p>
+        <div class="col-md-4">
+            {% if p.bio %}
+                <h5>{{p.user.username}}
+                  <br>
+                  <br>
+                <p><i>{{p.bio}}</i></p>
             {% else %}
-                <h5>{{prof.user.username | title}}</h5>
+                <h5>{{p.user.username}}</h5>
+                <hr>
+                <h2>This user has no bio yet</h2>
             {% endif %}
         </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-md-4"></div>
         {% endif %}
         {% endfor %}
     </div>
@@ -35,40 +37,49 @@
 <hr>
 <div class="container">
     <div class="row">
-        {% for img in images %}
-        {% if my_user.id == img.user.id %}
+        {% for image in images %}
+        {% if my_user.id == image.user.id %}
             <div class="col-md-4 col-lg-4 col-sm-8 col-xs-8">
-                {% if img.image %}
+                {% if image.image %}
                 <div class="card">
                         <div class="card-header">
-                                <img src="{{img.profile.profilePic.url}}" class="img-fluid rounded-circle" style="width:8%;height:8%">
-                                {% if user.id == img.user.id %}
-                                <a href="{% url 'profile' %}">{{img.user.username}}</a>
-                                {% else %}
-                                <a href="#">{{img.user.username}}</a>
-                                {% endif %}
+
+                                <a href="#">{{image.user.username}}</a>
                         </div>
                         <div class="card-body">
-                            {% if img.image.url %}
-                                <img src="{{img.image.url}}" alt="img-fluid" style="width:100%; height:100%">
-                                <p>{{img.caption}}</p>
-                                <p>{{img.upload_date | timesince}} ago</p>
-                                {% if img.likes >= 1 %}
-                                <p><i class="fa fa-heart fa-2x ml-4" style="color:red"></i><b>{{img.likes}} likes</b></p>
-                                {% endif %}
+                            {% if image.image.url %}
+                                <image src="{{image.image.url}}" style="width:100%; height:100%">
+                                  <br>
+                                <h4>{{image.caption | safe }}</h4>
+                                <p>{{image.timestamp | timesince}} ago</p>
+                                <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+
+                                <p><i class="fa fa-heart fa-2x"></i><b>{{image.likes}} likes</b></p>
+                              </li>
+
                             {% endif %}
+                          </ul>
+
                             </div>
-                        <div class="card-footer">
-                                {% for comment in comments %}
-                                {% if img.id == comment.image.id %}
-                                <p><b>{{comment.user}}</b>  {{comment.comments}}</p>
-                                <h6 style="font-size:12px"><i>{{comment.comment_date | timesince}} ago</i></h6>
+                        <!-- <div class="card-footer"> -->
+                         <ul class="list-group list-group-flush">
+                                {% for com in comments %}
+                                {% if image.id == com.image.id %}
+<li class="list-group-item">
+  <p><b>{{com.user}}</b>  {{com.comments}}</p>
+
+</li>
                                 {% endif %}
                                 {% endfor %}
-                            </div>
+                                 </ul>
                         </div>
                 {% endif %}
             </div>
+            {% else%}
+            <!-- <h2>{{"User has no posts" | truncatechars:14}}</h2> -->
+            <h2>User has no posts</h2>
+            <br>
         {% endif %}
         {% endfor %}
     </div>
