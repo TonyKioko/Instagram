@@ -24,12 +24,18 @@
       </header>
       <p style="margin-top:4px;">{{image.likes}} <span style="color:#DAAA4D">Likes</span></p><br>
       <p style=""><strong>{{ comments | length}} <span style="color:#DAAA4D">Comments</span> </strong></p>
-      {% for comment in comments %}
-      {% if comment.image_id == image.id %}
 
-      <p style=""><span style=" margin-right:16px; font-weight:600; font-size:14px">{{comment.user}}</span>{{comment.comment}}</p>
+
+      {% for comment in comments %}
+      {% if image.id == comment.image.id %}
+      <p><span style="color:#DAAA4D;">{{comment.user}}</span> {{comment.comment}}</p>
+      <!-- <h6  style="font-size:12px"><i>{{comment.comment_date | timesince}} ago</i></h6> -->
       {% endif %}
       {% endfor %}
+      <!-- {% for comment in image.comments %}
+      <p style=""><span style="">{{comments.user}}</span>{{comment.comment}}</p>
+      this is bulshit
+      {% endfor %} -->
       <hr>
     </div>
   </div>
