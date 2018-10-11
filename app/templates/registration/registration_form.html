@@ -10,15 +10,15 @@
               <!-- https://imageresize.org/view/d99ea48a-24df-41f5-9e8a-110c55a37667 -->
             </div>
             <div class="col-md-1">
-
+              <!-- Empty row -->
             </div>
             <div class="col-md-6 col-xs-12">
                 {% if form.errors %}
                     <p class="text-center">Some Information Might Be Incorrect</p>
                 {% endif %}
-                <div class="card card-default">
+                <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">SIGN UP</h3>
+                        <p style="font-size:22px;padding:6px;" class="text-center">SIGN UP</p>
                     </div>
                     <div class="card-body">
                         <form action="/accounts/register/" method="post">
@@ -33,7 +33,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+              <!-- Empty row -->
+            </div>
         </div>
     </div>
 {% endblock %}

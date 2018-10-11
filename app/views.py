@@ -155,7 +155,7 @@ def image_details(request,id):
 
 
 def search_users(request):
-    current_user = request.user
+    # current_user = request.user
     profile = Profile.get_profile()
 
     # if 'caption' in request.GET and request.GET["caption"]:
@@ -166,7 +166,7 @@ def search_users(request):
         message = f"{search_term}"
         print(search_term)
 
-        context = {"found_users":found_users,"message":message,"profiles":profile, "user":current_user}
+        context = {"found_users":found_users,"message":message,"profiles":profile}
 
         return render(request, 'search.html',context)
 
