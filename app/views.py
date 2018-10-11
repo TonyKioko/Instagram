@@ -179,9 +179,9 @@ def search_users(request):
 @login_required(login_url="/accounts/login/")
 def users_profiles(request,user_id):
     current_user = request.user
-    image = Image.get_images()
+    images = Image.get_images()
     profile = Profile.get_profile()
-    comment = Comment.get_comment()
+    comments = Comment.get_comment()
     user = get_object_or_404(User, pk=user_id)
-    context = {"user":current_user, "images":image,"my_user":user,"comments":comment,"profile":profile}
+    context = {"user":current_user, "images":images,"userz":user,"comments":comments,"profile":profile}
     return render(request,'users_profile.html',context)
