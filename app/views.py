@@ -155,7 +155,6 @@ def image_details(request,id):
 
 
 def search_users(request):
-    # current_user = request.user
     profile = Profile.get_profile()
 
     # if 'caption' in request.GET and request.GET["caption"]:
